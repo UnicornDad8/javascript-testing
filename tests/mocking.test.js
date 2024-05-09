@@ -6,6 +6,7 @@ import { charge } from "../src/libs/payment";
 import {
   getPriceInCurrency,
   getShippingInfo,
+  isOnline,
   login,
   renderPage,
   signUp,
@@ -133,5 +134,23 @@ describe("login", () => {
 
     const securityCode = spy.mock.results[0].value.toString();
     expect(sendEmail).toHaveBeenCalledWith(email, securityCode);
+  });
+});
+
+describe("isOnline", () => {
+  it("should return false if current hour is outside opening hours", () => {
+    vi.setSystemTime("2024-01-01 7:59");
+    expect(isOnline()).toBe(false);
+
+    vi.setSystemTime("2024-01-01 20:01");
+    expect(isOnline()).toBe(false);
+  });
+
+  it("should return true if current hour is within opening hours", () => {
+    vi.setSystemTime("2024-01-01 8:00");
+    expect(isOnline()).toBe(true);
+
+    vi.setSystemTime("2024-01-01 19:59");
+    expect(isOnline()).toBe(true);
   });
 });

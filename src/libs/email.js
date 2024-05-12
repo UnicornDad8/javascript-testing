@@ -7,7 +7,9 @@ export function isValidEmail(email) {
 }
 
 export async function sendEmail(to, message) {
+   
   console.log(`Sending email to ${to}...`);
+   
   console.log(`Message: ${message}`);
   await delay(3000);
 }

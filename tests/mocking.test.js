@@ -1,4 +1,4 @@
-import { vi, it, expect, describe, beforeEach } from "vitest";
+import { vi, it, expect, describe } from "vitest";
 import { trackPageView } from "../src/libs/analytics";
 import { getExchangeRate } from "../src/libs/currency";
 import { getShippingQuote } from "../src/libs/shipping";
